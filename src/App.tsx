@@ -1,4 +1,5 @@
-import FileComponents from './components/FileComponents';
+import RecursiveComponent from './components/RecursiveComponent';
+import { FileTree } from './data/FileTree';
 interface IProps {
 
 }
@@ -6,7 +7,7 @@ interface IProps {
 const App = ({}: IProps) => {
     return (
         <div>
-            <FileComponents />
+            <RecursiveComponent fileTree={FileTree}/>
         </div>
     )
 }

@@ -1,3 +1,5 @@
+import FileComponents from './components/FileComponents';
+import FolderComponents from './components/FolderComponents';
 interface IProps {
 
 }
@@ -5,7 +7,8 @@ interface IProps {
 const App = ({}: IProps) => {
     return (
         <>
-
+            <FileComponents />
+            <FolderComponents />
         </>
     )
 }

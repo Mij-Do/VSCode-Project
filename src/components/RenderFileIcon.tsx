@@ -4,8 +4,8 @@ import {extensionIconPath} from "../constant/index";
 
 interface IProps {
     filename: string;
-    isFolder:boolean;
-    isOpen: boolean;
+    isFolder?:boolean;
+    isOpen?: boolean;
 }
 
 const RenderFileIcon = ({filename, isFolder, isOpen}: IProps) => {

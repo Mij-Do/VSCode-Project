@@ -64,6 +64,16 @@ export const FileTree: IFile = {
                             isFolder: false,
                             content: `const Hello = {greeting: "Hello, World .. From TS"}`
                         },
+                        {
+                            name: "index.jsx",
+                            isFolder: false,
+                            content: `const Hello = {greeting: "Hello, World .. From React JSX"}`
+                        },
+                        {
+                            name: "index.tsx",
+                            isFolder: false,
+                            content: `const Hello = {greeting: "Hello, World .. From React TSX"}`
+                        },
                     ]
                 }
             ]

@@ -9,7 +9,7 @@ interface IProps {
 const OpenedFileBar = ({}: IProps) => {
     const {openedFiles, clickedFile} = useSelector((state: RootState) => state.fileTree)
     return (
-        <div>
+        <div className="space-y-3">
             <div className="flex">
                 {openedFiles.map(file => <OpenedFilesBarTab file={file} />)}
             </div>

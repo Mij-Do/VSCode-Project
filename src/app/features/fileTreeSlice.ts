@@ -22,10 +22,14 @@ const initialState: initialState = {
 export const FileTreeSlice = createSlice({
     name: 'fileTree',
     initialState,
-    reducers: {},
+    reducers: {
+        setOpenedFile: (state, action: PayloadAction<IFile[]>) => {
+            state.openedFiles = action.payload;
+        }
+    },
 })
 
 
-export const { } = FileTreeSlice.actions;
+export const { setOpenedFile } = FileTreeSlice.actions;
 
 export default FileTreeSlice.reducer;

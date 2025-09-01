@@ -3,12 +3,16 @@ import type { IFile } from '../interfaces';
 import BottomArrowIcon from './SVG/Bottom';
 import RightArrowIcon from './SVG/Right';
 import RenderFileIcon from './RenderFileIcon';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setOpenedFile } from '../app/features/fileTreeSlice';
+import type { RootState } from '../app/store';
 interface IProps {
     fileTree: IFile;
 }
 
 const RecursiveComponent = ({fileTree}: IProps) => {
+    const dispatch = useDispatch();
+    const {openedFiles} = useSelector((state: RootState) => state.fileTree);
     const [isOpen, setIsOpen] = useState<boolean>(true);
     const toggle = () => {
         setIsOpen(prev => !prev);
@@ -25,7 +29,7 @@ const RecursiveComponent = ({fileTree}: IProps) => {
                         </div>
                     </div>
                     :
-                    <div className='flex items-center'>
+                    <div className='flex items-center' onClick={() => dispatch(setOpenedFile([...openedFiles, fileTree]))}>
                         <RenderFileIcon filename={fileTree.name} isFolder={fileTree.isFolder} isOpen={isOpen}/>
                         <span>{fileTree.name}</span>
                     </div>

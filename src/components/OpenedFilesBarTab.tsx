@@ -17,15 +17,20 @@ const OpenedFilesBarTab = ({file}: IProps) => {
     const onClick = () => {
         dispatch(setClickedFiles({filename: name, filecontent: content, activeId: id}));
     }
-    const onRemove = (Id: string) => {
-        const filtered = openedFiles.filter(file => file.id !== Id);
+    const onRemove = (id: string) => {
+        const filtered = openedFiles.filter(file => file.id !== id);
+        const lastTap = filtered[filtered.length -1];
+        if (!lastTap) {
+            dispatch(setOpenedFile([]));
+            dispatch(setClickedFiles({activeId: null, filecontent: "", filename: ""}));
+            return;
+        }
         dispatch(setOpenedFile(filtered));
-        const {name, content, id} = filtered[filtered.length -1];
-        dispatch(setClickedFiles({filename: name, filecontent: content, activeId: id}));
+        dispatch(setClickedFiles({activeId: lastTap.id, filecontent: lastTap.content, filename: lastTap.name}));
     }
     return (
         <div className="flex space-x-5 border-b cursor-pointer">
-            <div className={`flex items-center space-x-0.5 p-2 ${id === clickedFile.activeId ? 'border-t border-[#Cf6CCf]' : 'border-transparent'}`} onClick={onClick}>
+            <div className={`${clickedFile.activeId === id ? 'border-[#cf6ccf]' : 'border-t-transparent'} cursor-pointer flex space-x-1 items-center border-t-2 p-2`} onClick={onClick}>
                 <RenderFileIcon filename={file.name} />
                 <span>{file.name}</span>
                 <span

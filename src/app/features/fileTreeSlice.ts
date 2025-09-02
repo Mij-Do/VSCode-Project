@@ -5,11 +5,11 @@ import type { IFile } from '../../interfaces';
 interface IClickedFile {
     filename: string;
     filecontent: string | undefined;
+    activeId: string | null;
 }
 interface initialState {
     openedFiles: IFile[];
     clickedFile: IClickedFile;
-    activeId: string | null;
 }
 
 const initialState: initialState = {
@@ -17,8 +17,8 @@ const initialState: initialState = {
     clickedFile: {
         filename: '',
         filecontent: '',
+        activeId: null,
     },
-    activeId: null,
 }
 
 export const FileTreeSlice = createSlice({
@@ -31,13 +31,10 @@ export const FileTreeSlice = createSlice({
         setClickedFiles: (state, action: PayloadAction<IClickedFile>) => {
             state.clickedFile = action.payload;
         },
-        setActiveId: (state, action: PayloadAction<string>) => {
-            state.activeId = action.payload;
-        }
     },
 })
 
 
-export const { setOpenedFile, setClickedFiles, setActiveId } = FileTreeSlice.actions;
+export const { setOpenedFile, setClickedFiles } = FileTreeSlice.actions;
 
 export default FileTreeSlice.reducer;

@@ -1,5 +1,6 @@
 import OpenedFileBar from './components/OpenedFileBar';
 import RecursiveComponent from './components/RecursiveComponent';
+import ResizablePanel from './components/ResizablePanel';
 import { FileTree } from './data/FileTree';
 interface IProps {
 
@@ -8,8 +9,11 @@ interface IProps {
 const App = ({}: IProps) => {
     return (
         <div className='flex space-x-10'>
-            <RecursiveComponent fileTree={FileTree}/>
-            <OpenedFileBar />
+            <ResizablePanel 
+                leftSide={<RecursiveComponent fileTree={FileTree}/>}
+                rightSide={<OpenedFileBar />}
+                showLeftPanel
+            />
         </div>
     )
 }

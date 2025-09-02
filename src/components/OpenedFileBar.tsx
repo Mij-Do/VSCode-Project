@@ -24,7 +24,7 @@ const OpenedFileBar = ({}: IProps) => {
             >
                 {openedFiles.map(file => <OpenedFilesBarTab file={file} />)}
             </div>
-            {showDropMenu && <DropMenu menuPosition={menuPosition}/>}
+            {showDropMenu && <DropMenu menuPosition={menuPosition} setShowDropMenu={setShowDropMenu}/>}
         </div>
     )
 }

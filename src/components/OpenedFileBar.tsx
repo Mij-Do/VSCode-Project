@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import OpenedFilesBarTab from "./OpenedFilesBarTab";
 import type { RootState } from "../app/store";
+import HighLighter from "./HighLighter";
 
 interface IProps {
 
@@ -14,7 +15,7 @@ const OpenedFileBar = ({}: IProps) => {
                 {openedFiles.map(file => <OpenedFilesBarTab file={file} />)}
             </div>
             <div>
-                {clickedFile.filecontent}
+                <HighLighter content={`${clickedFile.filecontent}`}/>
             </div>
         </div>
     )

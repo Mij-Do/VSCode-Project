@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import RenderFileIcon from "./RenderFileIcon";
 import CloseIcon from "./SVG/CloseIcon";
-import { setClickedFiles } from "../app/features/fileTreeSlice";
+import { setClickedFiles, setOpenedFile } from "../app/features/fileTreeSlice";
 import type { IFile } from "../interfaces";
 import type { RootState } from "../app/store";
 
@@ -12,9 +12,15 @@ interface IProps {
 
 const OpenedFilesBarTab = ({file}: IProps) => {
     const dispatch = useDispatch();
-    const {clickedFile} = useSelector((state: RootState) => state.fileTree);
+    const {openedFiles, clickedFile} = useSelector((state: RootState) => state.fileTree);
     const {name, content, id} = file;
     const onClick = () => {
+        dispatch(setClickedFiles({filename: name, filecontent: content, activeId: id}));
+    }
+    const onRemove = (Id: string) => {
+        const filtered = openedFiles.filter(file => file.id !== Id);
+        dispatch(setOpenedFile(filtered));
+        const {name, content, id} = filtered[filtered.length -1];
         dispatch(setClickedFiles({filename: name, filecontent: content, activeId: id}));
     }
     return (
@@ -22,7 +28,15 @@ const OpenedFilesBarTab = ({file}: IProps) => {
             <div className={`flex items-center space-x-0.5 p-2 ${id === clickedFile.activeId ? 'border-t border-[#Cf6CCf]' : 'border-transparent'}`} onClick={onClick}>
                 <RenderFileIcon filename={file.name} />
                 <span>{file.name}</span>
-                <span><CloseIcon /></span>
+                <span
+                onClick={e => 
+                    {
+                        e.stopPropagation();
+                        onRemove(file.id)
+                    }}
+                >
+                    <CloseIcon />
+                </span>
             </div>
         </div>
     )
